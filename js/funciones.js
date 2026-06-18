@@ -74,3 +74,11 @@ btnubi.addEventListener("click", ()=>{
         console.log(posicion);
     });
 });
+
+if("serviceWorker" in navigator){
+    navigator.serviceWorker.register("./sw.js").then(()=>{
+        console.log("Todo en orden con el sw");
+    }).catch((error)=>{
+        console.log(error);
+    });
+}
