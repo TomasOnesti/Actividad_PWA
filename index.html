@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramienta de Servivio Tecnico</title>
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+<body>
+
+    <main>
+        <div>
+            <h1>Captura de imagenes</h1>
+            <input type="file" id="imagen" accept="image/*"capture="environment">
+            <p id="nombreArchivo"></p>
+            <img id="preview">
+        </div>
+        <div>
+            <button id="ocr">Extraer texto</button>
+            <h3>Texto extraido</h3>
+            <textarea id="resultado" rows="10" cols="50"></textarea>
+            <button>Copiar Texto</button>
+        </div>
+    </main>
+</body>
+<script src="https://unpkg.com/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="./js/funciones.js"></script>
+</html>
