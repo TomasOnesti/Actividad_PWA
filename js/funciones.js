@@ -28,7 +28,11 @@ btn.addEventListener("click", async () => {
     }
 
     alert("1 - Imagen seleccionada");
-
+    alert(
+            "Tamaño: " +
+            (imagen.size / 1024 / 1024).toFixed(2) +
+            " MB"
+        );
     try{
 
         alert("2 - Antes de OCR");
@@ -39,11 +43,7 @@ btn.addEventListener("click", async () => {
                 "eng"
             );
         
-        alert(
-            "Tamaño: " +
-            (imagen.size / 1024 / 1024).toFixed(2) +
-            " MB"
-        );
+        
         alert("3 - OCR finalizado");
 
         console.log(resultado);
