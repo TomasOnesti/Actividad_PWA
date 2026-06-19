@@ -38,7 +38,12 @@ btn.addEventListener("click", async () => {
                 imagen,
                 "eng"
             );
-
+        
+        alert(
+            "Tamaño: " +
+            (imagen.size / 1024 / 1024).toFixed(2) +
+            " MB"
+        );
         alert("3 - OCR finalizado");
 
         console.log(resultado);
