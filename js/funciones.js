@@ -36,7 +36,7 @@ btn.addEventListener("click", async () => {
         const resultado =
             await Tesseract.recognize(
                 imagen,
-                "spa+eng"
+                "eng"
             );
 
         alert("3 - OCR finalizado");
@@ -53,12 +53,13 @@ btn.addEventListener("click", async () => {
 
     }catch(error){
 
+        console.error("ERROR COMPLETO:", error);
+
         alert(
-            "ERROR OCR: " +
-            error.message
+            "ERROR OCR:\n" +
+            JSON.stringify(error)
         );
 
-        console.error(error);
     }
 });
 
