@@ -8,35 +8,41 @@
     <link rel="stylesheet" href="./css/estilo.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 </head>
-<body>
-
-    <main>
-        <div>
-            <h1>Captura de imagenes</h1>
-            <input type="file" id="imagen" accept="image/*"capture="environment">
-            <p id="nombreArchivo"></p>
+<body class="fondo">
+    <header class="encabezado">
+        <h1 class="titulo">Servicio Tecnico</h1>
+    </header>
+    <main class="cont_prin">
+        <div class="cont">
+            <h2 class="sub-titulo">Captura de imagenes</h2>
+            <input type="file" id="imagen" accept="image/*" capture="environment" hidden>
+            <label for="imagen" class="btn-file">Seleccionar imagen</label>
+            <p class="nombre" id="nombreArchivo"></p>
             <img id="preview">
         </div>
-        <div>
-            <button id="ocr">Extraer texto</button>
-            <h3>Texto extraido</h3>
-            <textarea id="resultado" rows="10" cols="50"></textarea>
-            <button id="copi">Copiar Texto</button>
-        </div>
-        <div>
-            <button id="ubicacion">Obtener ubicacion</button>
-            <p id="longitud"></p>
-            <p id="latitud"></p>
-            <p id="precicion"></p>
-            <div class="contm" id="mapa"></div>
+
+        <div class="cont">
+            <button class="btn-file" id="ocr">Extraer texto</button>
+            <h3 class="text">Texto extraido</h3>
+            <textarea class="mostrar" id="resultado" readonly placeholder="El texto extraído aparecerá aquí." rows="10" cols="50"></textarea>
+            <button class="btn-file"id="copi">Copiar Texto</button>
         </div>
 
+        <div class="cont-ubi">
+            <button class="btn-file"id="ubicacion">Obtener ubicacion</button>
+            <p class="memidas" id="longitud"></p>
+            <p class="memidas" id="latitud"></p>
+            <p class="memidas" id="precicion"></p>
+            <div class="contm" id="mapa"></div>
+        </div>
     </main>
+    <footer>
+        <div>
+            <p>Hecho Por: Tomas Onesti</p>
+        </div>
+    </footer>
 </body>
 <script src="https://unpkg.com/tesseract.js@5/dist/tesseract.min.js"></script>
-<script>
-    console.log("Tesseract =", typeof Tesseract);
-</script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="./js/funciones.js"></script>
 </html>

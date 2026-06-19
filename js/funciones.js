@@ -16,8 +16,15 @@ const btnubi = document.getElementById("ubicacion");
 
 img.addEventListener("change", (evento) => {
     imagen = evento.target.files[0];
+    if(!imagen){
+        document.getElementById("nombreArchivo").textContent = "";
+        preview.style.display = "none";
+        preview.src = "";
+        return;
+    }
     document.getElementById("nombreArchivo").textContent = imagen.name;
-    preview.src= URL.createObjectURL(imagen);
+    preview.src = URL.createObjectURL(imagen);
+    preview.style.display = "block";
 });
 
 btn.addEventListener("click", async () => {
