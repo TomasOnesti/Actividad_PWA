@@ -1,4 +1,4 @@
-const CACHE_NAME = "pwa-version2";
+const CACHE_NAME = "pwa-version3";
 
 const archivos = [
     "./index.html",
