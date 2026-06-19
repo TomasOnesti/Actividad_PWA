@@ -21,21 +21,39 @@ img.addEventListener("change", (evento) => {
 });
 
 btn.addEventListener("click", async () => {
+
+    console.log("Botón OCR presionado");
+
+    if(!imagen){
+        alert("Seleccione una imagen primero");
+        return;
+    }
+
     try{
-        if(!imagen){
-            alert("Seleccione una imagen primero");
-            return;
-        }
-        const {data} =
+
+        alert("Iniciando OCR");
+
+        const { data } =
             await Tesseract.recognize(
                 imagen,
                 "spa+eng"
             );
+
+        console.log("OCR terminado");
         console.log(data.text);
+
         textocr.value = data.text;
+
+        alert("OCR completado");
+
     }catch(error){
+
         console.error(error);
-        alert(error.message);
+
+        alert(
+            "Error OCR: " +
+            error.message
+        );
     }
 });
 
