@@ -26,45 +26,20 @@ btn.addEventListener("click", async () => {
         alert("No hay imagen");
         return;
     }
-
-    alert("1 - Imagen seleccionada");
-    alert(
-            "Tamaño: " +
-            (imagen.size / 1024 / 1024).toFixed(2) +
-            " MB"
-        );
     try{
-
-        alert("2 - Antes de OCR");
-
         const resultado =
             await Tesseract.recognize(
                 imagen,
                 "eng"
             );
-        
-        
-        alert("3 - OCR finalizado");
-
         console.log(resultado);
-
-        textocr.value =
-            resultado.data.text;
-
-        alert(
-            "4 - Texto obtenido: " +
-            resultado.data.text
-        );
-
+        textocr.value = resultado.data.text;
     }catch(error){
-
         console.error("ERROR COMPLETO:", error);
-
         alert(
             "ERROR OCR:\n" +
             JSON.stringify(error)
         );
-
     }
 });
 
