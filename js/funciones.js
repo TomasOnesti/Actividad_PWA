@@ -20,14 +20,23 @@ img.addEventListener("change", (evento) => {
     preview.src= URL.createObjectURL(imagen);
 });
 
-btn.addEventListener("click", async()=>{
-    if(!imagen){
-        alert("Seleccione una imagen primero");
-        return;
+btn.addEventListener("click", async () => {
+    try{
+        if(!imagen){
+            alert("Seleccione una imagen primero");
+            return;
+        }
+        const {data} =
+            await Tesseract.recognize(
+                imagen,
+                "spa+eng"
+            );
+        console.log(data.text);
+        textocr.value = data.text;
+    }catch(error){
+        console.error(error);
+        alert(error.message);
     }
-    const {data} = await Tesseract.recognize(imagen, "spa+eng");
-    console.log(ocr);
-    textocr.value= data.text;
 });
 
 btncopiar.addEventListener("click", ()=>{
@@ -43,36 +52,35 @@ btncopiar.addEventListener("click", ()=>{
 
 btnubi.addEventListener("click", ()=>{
     if(!navigator.geolocation){
-        alert("Tu navegador no soporta geolocalizacion")
+        alert("Tu navegador no soporta geolocalizacion");
+        return;
     }
     navigator.geolocation.getCurrentPosition(
         (posicion)=>{
-        lat.textContent= "Latitud: " + posicion.coords.latitude;
-        long.textContent= "Longitud: " + posicion.coords.longitude;
-        prec.textContent= "Precición: " + posicion.coords.accuracy + " metros";
-        
-        longitud = posicion.coords.longitude;
-        latitud = posicion.coords.latitude;
-        if(mapa){
-            mapa.remove();
-        }
-
-        mapa = L.map("mapa").setView(
-            [latitud, longitud], 15
-        )
-
-        L.tileLayer(
-            "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-            {
-                maxZoom: 19
+            lat.textContent = "Latitud: " + posicion.coords.latitude;
+            long.textContent = "Longitud: " + posicion.coords.longitude;
+            prec.textContent = "Precisión: " + posicion.coords.accuracy + " metros";
+            
+            longitud = posicion.coords.longitude;
+            latitud = posicion.coords.latitude;
+            
+            if(mapa){
+                mapa.remove();
             }
-        ).addTo(mapa);
+            mapa = L.map("mapa").setView([latitud,longitud],15);
+            L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+                maxZoom:19
+                }
+            ).addTo(mapa);
 
-        L.marker(
-            [latitud, longitud]
-        ).addTo(mapa).bindPopup("Ubicacion actual").openPopup();
-        console.log(posicion);
-    });
+            L.marker(
+                [latitud,longitud]
+            ).addTo(mapa);
+        },(error)=>{
+            console.error(error);
+            alert(error.message);
+        }
+    );
 });
 
 if("serviceWorker" in navigator){
